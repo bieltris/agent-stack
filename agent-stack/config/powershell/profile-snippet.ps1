@@ -1,5 +1,11 @@
 $env:OLLAMA_API_BASE = "http://127.0.0.1:11434"
 $env:OLLAMA_OPENCODE_BASE = "http://127.0.0.1:11434/v1"
+$stackRoot = $env:AGENT_STACK_ROOT
+
+if (-not $stackRoot) {
+    Write-Host "AGENT_STACK_ROOT nao esta definido. Rode scripts/bootstrap.ps1 na pasta agent-stack ou defina a variavel manualmente." -ForegroundColor Yellow
+    return
+}
 
 function Start-OpenCodeNvidia {
     [CmdletBinding(PositionalBinding = $false)]
@@ -13,8 +19,8 @@ function Start-OpenCodeNvidia {
         return
     }
 
-    $env:OPENCODE_CONFIG = "D:\Usuarios\Gabriel\Documents\New project\agent-stack\opencode.json"
-    opencode --model nvidia/glm5 @OpenCodeArgs
+    $env:OPENCODE_CONFIG = Join-Path $stackRoot "opencode.json"
+    opencode --model nvidia/z-ai/glm5 @OpenCodeArgs
 }
 
 function Start-OpenCodeLocal {
@@ -24,7 +30,7 @@ function Start-OpenCodeLocal {
         [string[]]$OpenCodeArgs
     )
 
-    $env:OPENCODE_CONFIG = "D:\Usuarios\Gabriel\Documents\New project\agent-stack\opencode.local.json"
+    $env:OPENCODE_CONFIG = Join-Path $stackRoot "opencode.local.json"
     opencode --model ollama-local/qwen2.5-coder:7b @OpenCodeArgs
 }
 
@@ -38,7 +44,7 @@ function Start-OpenCodeProfile {
         [string[]]$OpenCodeArgs
     )
 
-    powershell -ExecutionPolicy Bypass -File "D:\Usuarios\Gabriel\Documents\New project\agent-stack\scripts\run-opencode-profile.ps1" $ProfileName @OpenCodeArgs
+    powershell -ExecutionPolicy Bypass -File (Join-Path $stackRoot "scripts\run-opencode-profile.ps1") $ProfileName @OpenCodeArgs
 }
 
 function Start-AgentStack {
@@ -48,7 +54,7 @@ function Start-AgentStack {
         [string[]]$StackArgs
     )
 
-    powershell -ExecutionPolicy Bypass -File "D:\Usuarios\Gabriel\Documents\New project\agent-stack\scripts\stack.ps1" @StackArgs
+    powershell -ExecutionPolicy Bypass -File (Join-Path $stackRoot "scripts\stack.ps1") @StackArgs
 }
 
 function openfast { Start-OpenCodeProfile fast @args }

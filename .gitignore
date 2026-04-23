@@ -1,4 +1,5 @@
 .aider*
+!agent-stack/config/aider/.aider.conf.yml
 *.log
 *.msi
 *.zip

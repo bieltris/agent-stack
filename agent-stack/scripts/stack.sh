@@ -53,24 +53,24 @@ case "${COMMAND}" in
     ;;
   aider)
     shift
-    exec powershell -ExecutionPolicy Bypass -File "${STACK_ROOT}/scripts/run-aider.ps1" "$@"
+    exec "${STACK_ROOT}/scripts/run-aider.sh" "$@"
     ;;
   doctor)
-    exec powershell -ExecutionPolicy Bypass -File "${STACK_ROOT}/scripts/doctor.ps1"
+    exec "${STACK_ROOT}/scripts/doctor.sh"
     ;;
   status)
     show_status
     ;;
   opencode-nvidia)
     shift
-    exec powershell -ExecutionPolicy Bypass -File "${STACK_ROOT}/scripts/run-opencode-nvidia.ps1" "$@"
+    exec "${STACK_ROOT}/scripts/run-opencode-nvidia.sh" "$@"
     ;;
   opencode-local)
     shift
-    exec powershell -ExecutionPolicy Bypass -File "${STACK_ROOT}/scripts/run-opencode-local.ps1" "$@"
+    exec "${STACK_ROOT}/scripts/run-opencode-local.sh" "$@"
     ;;
   bootstrap)
-    exec powershell -ExecutionPolicy Bypass -File "${STACK_ROOT}/scripts/bootstrap.ps1"
+    exec "${STACK_ROOT}/scripts/bootstrap.sh"
     ;;
   *)
     echo "Unknown command: ${COMMAND}"

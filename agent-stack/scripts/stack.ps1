@@ -23,6 +23,7 @@ Usage:
   stack help
   stack profiles
   stack run <fast|cheap|local-only|max-quality> [opencode args...]
+  stack swarm "<task>" [swarm-name]
   stack aider [aider args...]
   stack doctor
   stack status
@@ -81,6 +82,15 @@ switch ($Command) {
             exit 1
         }
         powershell -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "run-opencode-profile.ps1") $Target @Args
+    }
+    "swarm" {
+        if (-not $Target) {
+            Write-Host "Missing task text." -ForegroundColor Red
+            Show-StackHelp
+            exit 1
+        }
+        $swarmName = if ($Args.Count -gt 0) { $Args[0] } else { "default" }
+        powershell -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "run-swarm.ps1") $Target $swarmName
     }
     "aider" {
         powershell -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot "run-aider.ps1") @($Target) @Args

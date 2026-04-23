@@ -24,6 +24,7 @@ This stack is split into two layers:
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run cheap`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run local-only`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run max-quality`
+- `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 swarm "Design a login feature"`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 aider`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 doctor`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-nvidia.ps1`

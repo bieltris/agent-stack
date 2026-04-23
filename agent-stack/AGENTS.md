@@ -9,6 +9,7 @@ Read these files in order when setting up this stack on another machine:
 5. `docs/03-portability-boundaries.md`
 6. `docs/04-profiles.md`
 7. `docs/05-command-center.md`
+8. `docs/06-swarm.md`
 
 Key goals:
 
@@ -17,6 +18,7 @@ Key goals:
 - Reuse `opencode.json` and `config/aider/.aider.conf.yml` instead of inventing new config.
 - Respect `profiles.json` and use the profile runner instead of hardcoding models when possible.
 - Prefer `scripts/stack.ps1` as the main operator entrypoint.
+- Respect `swarm.json` for multi-agent role orchestration.
 - Prefer the scripts in `scripts/` over ad-hoc manual commands.
 
 Important constraints:

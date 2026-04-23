@@ -2,6 +2,8 @@ param(
     [Parameter(Mandatory = $true, Position = 0)]
     [string]$ProfileName,
 
+    [string]$PromptFile,
+
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$OpenCodeArgs
 )
@@ -39,4 +41,10 @@ if ($profile.provider -eq "ollama-local") {
 }
 
 Write-Host "OpenCode profile: $ProfileName -> $($profile.model)" -ForegroundColor Cyan
-opencode --model $profile.model @OpenCodeArgs
+
+if ($PromptFile) {
+    $promptText = Get-Content $PromptFile -Raw
+    opencode run $promptText --model $profile.model
+} else {
+    opencode --model $profile.model @OpenCodeArgs
+}

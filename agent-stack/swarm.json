@@ -1,0 +1,34 @@
+{
+  "default": {
+    "label": "Cloud Dev Swarm",
+    "description": "Five-agent cloud-first development swarm with local synthesis fallback.",
+    "synthesisProfile": "max-quality",
+    "agents": [
+      {
+        "name": "architect",
+        "profile": "max-quality",
+        "goal": "Define architecture, constraints, tradeoffs, and execution strategy."
+      },
+      {
+        "name": "planner",
+        "profile": "fast",
+        "goal": "Break the task into a concrete implementation plan with steps and risks."
+      },
+      {
+        "name": "implementer",
+        "profile": "fast",
+        "goal": "Propose the implementation approach, key code structure, and likely files to touch."
+      },
+      {
+        "name": "reviewer",
+        "profile": "cheap",
+        "goal": "Look for bugs, regressions, ambiguity, edge cases, and maintainability risks."
+      },
+      {
+        "name": "tester",
+        "profile": "cheap",
+        "goal": "Design validation strategy, test cases, and acceptance checks."
+      }
+    ]
+  }
+}

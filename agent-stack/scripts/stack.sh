@@ -13,6 +13,7 @@ Usage:
   stack help
   stack profiles
   stack run <fast|cheap|local-only|max-quality> [opencode args...]
+  stack swarm "<task>" [swarm-name]
   stack aider [aider args...]
   stack doctor
   stack status
@@ -50,6 +51,14 @@ case "${COMMAND}" in
     fi
     shift 2
     exec "${STACK_ROOT}/scripts/run-opencode-profile.sh" "${TARGET}" "$@"
+    ;;
+  swarm)
+    if [[ -z "${TARGET}" ]]; then
+      echo "Missing task text"
+      exit 1
+    fi
+    SWARM_NAME="${3:-default}"
+    exec powershell -ExecutionPolicy Bypass -File "${STACK_ROOT}/scripts/run-swarm.ps1" "${TARGET}" "${SWARM_NAME}"
     ;;
   aider)
     shift

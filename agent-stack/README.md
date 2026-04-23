@@ -45,6 +45,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 help
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 profiles
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run fast
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run max-quality
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 swarm "Design a login feature"
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 aider
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 doctor
 ```
@@ -54,7 +55,25 @@ Shell:
 ```bash
 ./scripts/stack.sh profiles
 ./scripts/stack.sh run local-only
+./scripts/stack.sh swarm "Design a login feature"
 ```
+
+## Swarm
+
+The stack includes a first multi-agent swarm runner:
+
+- config: `swarm.json`
+- runner: `scripts/run-swarm.ps1`
+
+It launches five role-based agents in parallel, stores per-agent outputs, and writes:
+
+- `combined.md`
+- `summary.md`
+- `manifest.json`
+
+under `.state/swarm/runs/<run-id>/`
+
+The current default swarm is cloud-first and uses `max-quality` for final synthesis.
 
 ## Profiles
 
@@ -81,7 +100,7 @@ Shell:
 
 ## Notes
 
-- `OpenCode` is configured to use the NVIDIA OpenAI-compatible endpoint.
+- `OpenCode` is configured to use the native NVIDIA provider.
 - `OpenCode` also includes a fully local config in `opencode.local.json`.
 - `aider` is configured to use `ollama/qwen2.5-coder:7b`.
 - `Ollama` is expected to run on the host at `http://127.0.0.1:11434`.

@@ -1,0 +1,20 @@
+services:
+  agent-stack:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    env_file:
+      - .env
+    environment:
+      OPENCODE_CONFIG: /stack/opencode.json
+      OLLAMA_API_BASE: ${OLLAMA_API_BASE:-http://host.docker.internal:11434}
+      OLLAMA_OPENCODE_BASE: ${OLLAMA_OPENCODE_BASE:-http://host.docker.internal:11434/v1}
+    volumes:
+      - .:/stack
+      - ./.state/home:/root
+      - ${WORKSPACE_DIR:-..}:/workspace
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    stdin_open: true
+    tty: true

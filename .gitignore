@@ -1,0 +1,6 @@
+.aider*
+*.log
+*.msi
+*.zip
+*Setup.exe
+agent-stack/.env

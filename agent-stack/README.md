@@ -86,3 +86,4 @@ Shell:
 - `aider` is configured to use `ollama/qwen2.5-coder:7b`.
 - `Ollama` is expected to run on the host at `http://127.0.0.1:11434`.
 - `OpenCode` talks to Ollama through the OpenAI-compatible endpoint `/v1`.
+- If you use `config/powershell/profile-snippet.ps1`, run `scripts/bootstrap.ps1` first so `AGENT_STACK_ROOT` is set.

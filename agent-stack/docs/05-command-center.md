@@ -17,6 +17,11 @@ With it, you can operate the stack through one command surface:
 - `stack doctor`
 - `stack status`
 
+Implementation:
+
+- PowerShell: `scripts/stack.ps1`
+- Bash: `scripts/stack.sh`
+
 ## Design goals
 
 - one entrypoint

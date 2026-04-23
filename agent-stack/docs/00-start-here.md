@@ -34,3 +34,11 @@ This stack is split into two layers:
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 max-quality`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-aider.ps1`
 - `docker compose run --rm agent-stack bash`
+
+Linux/macOS/WSL (bash):
+
+- `./scripts/stack.sh profiles`
+- `./scripts/stack.sh run fast`
+- `./scripts/stack.sh run local-only`
+- `./scripts/stack.sh aider`
+- `./scripts/stack.sh doctor`

@@ -5,6 +5,11 @@ STACK_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PROFILE_NAME="${1:-}"
 shift || true
 
+NODE_BIN="${STACK_ROOT}/.state/node/node_modules/.bin"
+VENV_BIN="${STACK_ROOT}/.state/venv/bin"
+if [[ -d "${NODE_BIN}" ]]; then export PATH="${NODE_BIN}:${PATH}"; fi
+if [[ -d "${VENV_BIN}" ]]; then export PATH="${VENV_BIN}:${PATH}"; fi
+
 if [[ -z "${PROFILE_NAME}" ]]; then
   echo "Usage: ./scripts/run-opencode-profile.sh <fast|cheap|local-only|max-quality> [opencode args...]"
   exit 1

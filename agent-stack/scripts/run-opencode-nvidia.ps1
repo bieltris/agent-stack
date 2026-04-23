@@ -1,5 +1,7 @@
 $ErrorActionPreference = "Stop"
 $stackRoot = Split-Path -Parent $PSScriptRoot
+$toolsLib = Join-Path $PSScriptRoot "lib\\tools.ps1"
+if (Test-Path -LiteralPath $toolsLib) { . $toolsLib; Use-AgentStackLocalTools }
 $env:OPENCODE_CONFIG = Join-Path $stackRoot "opencode.json"
 
 if (-not $env:NVIDIA_API_KEY) {

@@ -11,6 +11,8 @@ param(
 $ErrorActionPreference = "Stop"
 
 $stackRoot = Split-Path -Parent $PSScriptRoot
+$toolsLib = Join-Path $PSScriptRoot "lib\\tools.ps1"
+if (Test-Path -LiteralPath $toolsLib) { . $toolsLib; Use-AgentStackLocalTools }
 $profilesPath = Join-Path $stackRoot "profiles.json"
 $profiles = Get-Content $profilesPath -Raw | ConvertFrom-Json
 

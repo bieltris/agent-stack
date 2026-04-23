@@ -29,8 +29,32 @@ This folder is designed so a future agent can read it and finish setup quickly o
 - `scripts/doctor.ps1`
 - `scripts/run-opencode-nvidia.ps1`
 - `scripts/run-opencode-local.ps1`
+- `scripts/run-opencode-profile.ps1`
 - `scripts/run-aider.ps1`
 - `docker compose run --rm agent-stack bash`
+
+## Profiles
+
+The stack includes four OpenCode profiles:
+
+- `fast`: `nvidia/minimaxai/minimax-m2.5`
+- `cheap`: `nvidia/nvidia/nvidia-nemotron-nano-9b-v2`
+- `local-only`: Ollama-only fallback
+- `max-quality`: `nvidia/z-ai/glm5`
+
+PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 fast
+powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 max-quality
+```
+
+Shell:
+
+```bash
+./scripts/run-opencode-profile.sh fast
+./scripts/run-opencode-profile.sh local-only
+```
 
 ## Notes
 

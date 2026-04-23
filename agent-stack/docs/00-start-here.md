@@ -21,5 +21,9 @@ This stack is split into two layers:
 
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-nvidia.ps1`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-local.ps1`
+- `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 fast`
+- `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 cheap`
+- `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 local-only`
+- `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 max-quality`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-aider.ps1`
 - `docker compose run --rm agent-stack bash`

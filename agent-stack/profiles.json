@@ -1,0 +1,46 @@
+{
+  "fast": {
+    "label": "Fast",
+    "config": "opencode.json",
+    "model": "nvidia/minimaxai/minimax-m2.5",
+    "provider": "nvidia",
+    "intent": "Quick answers, short edits, lower latency cloud profile.",
+    "notes": [
+      "Good default for lightweight coding tasks and iteration.",
+      "Prefer this when you want speed over maximum reasoning depth."
+    ]
+  },
+  "cheap": {
+    "label": "Cheap",
+    "config": "opencode.json",
+    "model": "nvidia/nvidia/nvidia-nemotron-nano-9b-v2",
+    "provider": "nvidia",
+    "intent": "Lowest-cost cloud profile for lightweight tasks and triage.",
+    "notes": [
+      "Best for rough drafts, summarization, and quick checks.",
+      "Tradeoff: weaker coding performance than the other cloud profiles."
+    ]
+  },
+  "local-only": {
+    "label": "Local Only",
+    "config": "opencode.local.json",
+    "model": "ollama-local/qwen2.5-coder:7b",
+    "provider": "ollama-local",
+    "intent": "Offline/private local fallback profile using Ollama.",
+    "notes": [
+      "No cloud dependency once Ollama is running and the model is pulled.",
+      "Best fallback when rate limits or network issues get in the way."
+    ]
+  },
+  "max-quality": {
+    "label": "Max Quality",
+    "config": "opencode.json",
+    "model": "nvidia/z-ai/glm5",
+    "provider": "nvidia",
+    "intent": "Highest-quality default profile in this stack for serious work.",
+    "notes": [
+      "Use for deeper reasoning, harder coding tasks, and higher-value runs.",
+      "Expect more latency and potentially higher cost than fast/cheap."
+    ]
+  }
+}

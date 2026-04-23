@@ -1,44 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "share": "disabled",
-  "model": "nvidia/glm5",
-  "small_model": "nvidia/glm5",
-  "provider": {
-    "nvidia": {
-      "npm": "@ai-sdk/openai-compatible",
-      "name": "NVIDIA NIM",
-      "options": {
-        "baseURL": "https://integrate.api.nvidia.com/v1",
-        "apiKey": "{env:NVIDIA_API_KEY}"
-      },
-      "models": {
-        "glm5": {
-          "name": "GLM 5",
-          "limit": {
-            "context": 202752,
-            "output": 8192
-          }
-        },
-        "kimi-k2.5": {
-          "name": "Kimi K2.5",
-          "limit": {
-            "context": 262144,
-            "output": 8192
-          }
-        },
-        "minimax-m2.5": {
-          "name": "MiniMax M2.5",
-          "limit": {
-            "context": 196608,
-            "output": 8192
-          }
-        }
-      }
-    },
-    "ollama": {
-      "options": {
-        "baseURL": "{env:OLLAMA_API_BASE}"
-      }
-    }
-  }
+  "model": "nvidia/z-ai/glm5",
+  "small_model": "nvidia/moonshotai/kimi-k2.5"
 }

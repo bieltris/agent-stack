@@ -27,3 +27,21 @@ function Start-OpenCodeLocal {
     $env:OPENCODE_CONFIG = "D:\Usuarios\Gabriel\Documents\New project\agent-stack\opencode.local.json"
     opencode --model ollama-local/qwen2.5-coder:7b @OpenCodeArgs
 }
+
+function Start-OpenCodeProfile {
+    [CmdletBinding(PositionalBinding = $false)]
+    param(
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string]$ProfileName,
+
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$OpenCodeArgs
+    )
+
+    powershell -ExecutionPolicy Bypass -File "D:\Usuarios\Gabriel\Documents\New project\agent-stack\scripts\run-opencode-profile.ps1" $ProfileName @OpenCodeArgs
+}
+
+function openfast { Start-OpenCodeProfile fast @args }
+function opencheap { Start-OpenCodeProfile cheap @args }
+function openlocalonly { Start-OpenCodeProfile local-only @args }
+function openmax { Start-OpenCodeProfile max-quality @args }

@@ -7,12 +7,14 @@ Read these files in order when setting up this stack on another machine:
 3. `docs/01-secrets-and-auth.md`
 4. `docs/02-current-machine-manual-steps.md`
 5. `docs/03-portability-boundaries.md`
+6. `docs/04-profiles.md`
 
 Key goals:
 
 - Recreate `OpenCode + NVIDIA` as the main cloud coding stack.
 - Recreate `aider + Ollama` as the local fallback stack.
 - Reuse `opencode.json` and `config/aider/.aider.conf.yml` instead of inventing new config.
+- Respect `profiles.json` and use the profile runner instead of hardcoding models when possible.
 - Prefer the scripts in `scripts/` over ad-hoc manual commands.
 
 Important constraints:

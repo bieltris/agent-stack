@@ -7,4 +7,4 @@ if (-not $env:NVIDIA_API_KEY) {
     exit 1
 }
 
-opencode --model nvidia/glm5 @args
+opencode --model nvidia/z-ai/glm5 @args

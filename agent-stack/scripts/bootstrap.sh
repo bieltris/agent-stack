@@ -2,10 +2,16 @@
 set -euo pipefail
 
 STACK_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-mkdir -p "${HOME}/.config/opencode"
-cp "${STACK_ROOT}/opencode.json" "${HOME}/.config/opencode/opencode.json"
-cp "${STACK_ROOT}/opencode.local.json" "${HOME}/.config/opencode/opencode.local.json"
-cp "${STACK_ROOT}/config/aider/.aider.conf.yml" "${HOME}/.aider.conf.yml"
 
-echo "Bootstrap concluido."
+# Portable bootstrap: do not write to $HOME (some environments block it).
+# Runner scripts set OPENCODE_CONFIG and aider config paths explicitly.
+
+if [[ ! -f "${STACK_ROOT}/.env" ]]; then
+  cp "${STACK_ROOT}/.env.example" "${STACK_ROOT}/.env"
+  echo "Criado .env a partir de .env.example."
+else
+  echo ".env ja existe."
+fi
+
+echo "Bootstrap concluido (modo portatil, sem escrever no HOME)."
 echo "Agora leia docs/01-secrets-and-auth.md para concluir NVIDIA_API_KEY."

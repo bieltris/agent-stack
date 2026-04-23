@@ -1,11 +1,6 @@
 $env:OLLAMA_API_BASE = "http://127.0.0.1:11434"
 $env:OLLAMA_OPENCODE_BASE = "http://127.0.0.1:11434/v1"
-$stackRoot = $env:AGENT_STACK_ROOT
-
-if (-not $stackRoot) {
-    Write-Host "AGENT_STACK_ROOT nao esta definido. Rode scripts/bootstrap.ps1 na pasta agent-stack ou defina a variavel manualmente." -ForegroundColor Yellow
-    return
-}
+$stackRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
 
 function Start-OpenCodeNvidia {
     [CmdletBinding(PositionalBinding = $false)]

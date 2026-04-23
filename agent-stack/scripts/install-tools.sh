@@ -12,8 +12,8 @@ if [[ ! -d "${VENV_DIR}" ]]; then
   python3 -m venv "${VENV_DIR}"
 fi
 
-"${VENV_DIR}/bin/python" -m pip install --upgrade pip
-"${VENV_DIR}/bin/python" -m pip install --upgrade aider-chat
+"${VENV_DIR}/bin/python" -m pip install --upgrade pip setuptools wheel
+"${VENV_DIR}/bin/python" -m pip install --index-url https://pypi.org/simple --upgrade aider-chat
 
 mkdir -p "${NODE_DIR}"
 npm install --prefix "${NODE_DIR}" opencode-ai

@@ -1,9 +1,28 @@
+$toolsLib = Join-Path $PSScriptRoot "lib\tools.ps1"
+if (Test-Path -LiteralPath $toolsLib) {
+    . $toolsLib
+    Use-AgentStackLocalTools
+}
+
 $stackRoot = Split-Path -Parent $PSScriptRoot
 $envFile = Join-Path $stackRoot ".env"
 $savedNvidiaKey = [System.Environment]::GetEnvironmentVariable("NVIDIA_API_KEY", "User")
 $savedOllamaBase = [System.Environment]::GetEnvironmentVariable("OLLAMA_API_BASE", "User")
 $savedOllamaOpenCodeBase = [System.Environment]::GetEnvironmentVariable("OLLAMA_OPENCODE_BASE", "User")
 $dotenv = @{}
+
+function Test-ConfiguredValue {
+    param(
+        [string]$Value
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return $false
+    }
+
+    $normalized = $Value.Trim()
+    return $normalized -notmatch "REPLACE_ME|CHANGE_ME|YOUR_"
+}
 
 if (Test-Path $envFile) {
     Get-Content $envFile | ForEach-Object {
@@ -22,9 +41,9 @@ $checks = [ordered]@{
     "aider" = (Get-Command aider -ErrorAction SilentlyContinue) -ne $null
     "docker" = (Get-Command docker -ErrorAction SilentlyContinue) -ne $null
     "ollama" = (Get-Command ollama -ErrorAction SilentlyContinue) -ne $null
-    "nvidia_api_key" = -not [string]::IsNullOrWhiteSpace($env:NVIDIA_API_KEY) -or -not [string]::IsNullOrWhiteSpace($savedNvidiaKey) -or $dotenv.ContainsKey("NVIDIA_API_KEY")
-    "ollama_api_base" = -not [string]::IsNullOrWhiteSpace($env:OLLAMA_API_BASE) -or -not [string]::IsNullOrWhiteSpace($savedOllamaBase) -or $dotenv.ContainsKey("OLLAMA_API_BASE")
-    "ollama_opencode_base" = -not [string]::IsNullOrWhiteSpace($env:OLLAMA_OPENCODE_BASE) -or -not [string]::IsNullOrWhiteSpace($savedOllamaOpenCodeBase) -or $dotenv.ContainsKey("OLLAMA_OPENCODE_BASE")
+    "nvidia_api_key" = (Test-ConfiguredValue $env:NVIDIA_API_KEY) -or (Test-ConfiguredValue $savedNvidiaKey) -or (Test-ConfiguredValue $dotenv["NVIDIA_API_KEY"])
+    "ollama_api_base" = (Test-ConfiguredValue $env:OLLAMA_API_BASE) -or (Test-ConfiguredValue $savedOllamaBase) -or (Test-ConfiguredValue $dotenv["OLLAMA_API_BASE"])
+    "ollama_opencode_base" = (Test-ConfiguredValue $env:OLLAMA_OPENCODE_BASE) -or (Test-ConfiguredValue $savedOllamaOpenCodeBase) -or (Test-ConfiguredValue $dotenv["OLLAMA_OPENCODE_BASE"])
 }
 
 $checks.GetEnumerator() | ForEach-Object {

@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 function Use-AgentStackLocalTools {
-    $stackRoot = Split-Path -Parent $PSScriptRoot
+    $stackRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
     $stateDir = Join-Path $stackRoot ".state"
 
     $nodeBin = Join-Path $stateDir "node\\node_modules\\.bin"

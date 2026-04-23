@@ -14,9 +14,10 @@ This stack is split into two layers:
 5. Copy this folder.
 6. Create `.env` from `.env.example` if you plan to use Docker Compose.
 7. Run `scripts/bootstrap.ps1` on Windows or `scripts/bootstrap.sh` on Linux/macOS/WSL.
-8. Complete `docs/01-secrets-and-auth.md`.
-9. Open a new terminal if your OS persists env vars outside the current shell.
-10. Run `scripts/doctor.ps1` on Windows or `scripts/doctor.sh` on Linux/macOS/WSL.
+8. Run `scripts/install-tools.ps1` on Windows or `scripts/install-tools.sh` on Linux/macOS/WSL if you want repo-local `opencode` and `aider`.
+9. Complete `docs/01-secrets-and-auth.md`.
+10. Open a new terminal if your OS persists new PATH entries outside the current shell.
+11. Run `scripts/doctor.ps1` on Windows or `scripts/doctor.sh` on Linux/macOS/WSL.
 
 ## Recommended daily commands
 
@@ -28,6 +29,7 @@ This stack is split into two layers:
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 swarm "Design a login feature"`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 aider`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 doctor`
+- `powershell -ExecutionPolicy Bypass -File .\scripts\install-tools.ps1`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-nvidia.ps1`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-local.ps1`
 - `powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 fast`
@@ -47,6 +49,8 @@ Linux/macOS/WSL (bash):
 
 ## Important portability notes
 
-- `scripts/bootstrap.ps1` copies config files and saves `AGENT_STACK_ROOT` and `OLLAMA_API_BASE` as user environment variables for future PowerShell sessions.
-- `scripts/bootstrap.sh` copies config files only. For host-native bash or WSL usage, export `NVIDIA_API_KEY`, `OLLAMA_API_BASE`, and `OLLAMA_OPENCODE_BASE` in your shell profile or before running commands.
+- `scripts/bootstrap.ps1` and `scripts/bootstrap.sh` run in portable mode and do not need to write config into `$HOME`.
+- `scripts/install-tools.ps1` installs `opencode` and `aider` into `.state/` using Python 3.12 for Windows compatibility.
+- `scripts/install-tools.sh` installs `opencode` and `aider` into `.state/` for bash/WSL/macOS usage.
+- `config/powershell/profile-snippet.ps1` resolves the repo root from its own location and does not require `AGENT_STACK_ROOT`.
 - `.env` is consumed by Docker Compose. It is not automatically loaded into your host shell.

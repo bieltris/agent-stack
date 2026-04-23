@@ -22,12 +22,14 @@ This folder is designed so a future agent can read it and finish setup quickly o
 2. Create `.env` from `.env.example` if you plan to use Docker.
 3. Read `docs/00-start-here.md`.
 4. Run the bootstrap script for your OS.
-5. Complete the manual steps in `docs/01-secrets-and-auth.md`.
+5. Run `scripts/install-tools.ps1` on Windows or `scripts/install-tools.sh` on Linux/macOS/WSL if you want host-native `opencode` and `aider` without global installs.
+6. Complete the manual steps in `docs/01-secrets-and-auth.md`.
 
 ## Main entrypoints
 
 - `scripts/stack.ps1`
 - `scripts/bootstrap.ps1`
+- `scripts/install-tools.ps1`
 - `scripts/doctor.ps1`
 - `scripts/run-opencode-nvidia.ps1`
 - `scripts/run-opencode-local.ps1`
@@ -49,6 +51,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run max-quality
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 swarm "Design a login feature"
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 aider
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 doctor
+powershell -ExecutionPolicy Bypass -File .\scripts\install-tools.ps1
 ```
 
 Shell:
@@ -108,5 +111,6 @@ Shell:
 - `aider` is configured to use `ollama/qwen2.5-coder:7b`.
 - `Ollama` is expected to run on the host at `http://127.0.0.1:11434`.
 - `OpenCode` talks to Ollama through the OpenAI-compatible endpoint `/v1`.
-- If you use `config/powershell/profile-snippet.ps1`, run `scripts/bootstrap.ps1` first so `AGENT_STACK_ROOT` is set.
-- `.env` is for Docker and local compose runs. Host-native PowerShell uses user env vars, and host-native bash/WSL expects exported env vars in your shell session.
+- `scripts/install-tools.ps1` installs `opencode` and `aider` into `.state/` so the repo can run without global installs.
+- `config/powershell/profile-snippet.ps1` resolves paths relative to the repo and no longer depends on `AGENT_STACK_ROOT`.
+- `.env` is for Docker and local compose runs. Host-native commands still need `NVIDIA_API_KEY` exported in the current shell or saved as a user env var.

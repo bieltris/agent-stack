@@ -41,7 +41,7 @@ if (-not (Test-Path -LiteralPath $venvDir)) {
 
 $venvPython = Join-Path $venvDir "Scripts\\python.exe"
 & $venvPython -m pip install --upgrade pip setuptools wheel
-& $venvPython -m pip install --upgrade aider-chat
+& $venvPython -m pip install --index-url https://pypi.org/simple --upgrade aider-chat
 
 if (-not (Test-Path -LiteralPath $nodeDir)) {
     New-Item -ItemType Directory -Force -Path $nodeDir | Out-Null

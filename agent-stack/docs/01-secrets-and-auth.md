@@ -34,6 +34,20 @@ NVIDIA_API_KEY=nvapi-...
 
 ## Manual item 2: verify OpenCode can see the key
 
+If you installed tools locally into `.state/`, prefer:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\run-opencode-profile.ps1 fast models nvidia
+```
+
+or:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run fast models nvidia
+```
+
+If you installed `opencode` globally, this also works:
+
 ```powershell
 opencode models nvidia
 ```
@@ -49,7 +63,7 @@ Linux/macOS/WSL:
 
 ```bash
 export NVIDIA_API_KEY="nvapi-..."
-opencode models nvidia
+./scripts/run-opencode-profile.sh fast models nvidia
 ```
 
 ## Manual item 3: model switching

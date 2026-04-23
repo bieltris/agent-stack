@@ -25,6 +25,7 @@ This folder is designed so a future agent can read it and finish setup quickly o
 
 ## Main entrypoints
 
+- `scripts/stack.ps1`
 - `scripts/bootstrap.ps1`
 - `scripts/doctor.ps1`
 - `scripts/run-opencode-nvidia.ps1`
@@ -32,6 +33,28 @@ This folder is designed so a future agent can read it and finish setup quickly o
 - `scripts/run-opencode-profile.ps1`
 - `scripts/run-aider.ps1`
 - `docker compose run --rm agent-stack bash`
+
+## Command Center
+
+The command center is the unified CLI entrypoint for the stack.
+
+PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 help
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 profiles
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run fast
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 run max-quality
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 aider
+powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 doctor
+```
+
+Shell:
+
+```bash
+./scripts/stack.sh profiles
+./scripts/stack.sh run local-only
+```
 
 ## Profiles
 

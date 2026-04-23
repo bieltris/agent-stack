@@ -41,7 +41,18 @@ function Start-OpenCodeProfile {
     powershell -ExecutionPolicy Bypass -File "D:\Usuarios\Gabriel\Documents\New project\agent-stack\scripts\run-opencode-profile.ps1" $ProfileName @OpenCodeArgs
 }
 
+function Start-AgentStack {
+    [CmdletBinding(PositionalBinding = $false)]
+    param(
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]]$StackArgs
+    )
+
+    powershell -ExecutionPolicy Bypass -File "D:\Usuarios\Gabriel\Documents\New project\agent-stack\scripts\stack.ps1" @StackArgs
+}
+
 function openfast { Start-OpenCodeProfile fast @args }
 function opencheap { Start-OpenCodeProfile cheap @args }
 function openlocalonly { Start-OpenCodeProfile local-only @args }
 function openmax { Start-OpenCodeProfile max-quality @args }
+Set-Alias -Name stack -Value Start-AgentStack

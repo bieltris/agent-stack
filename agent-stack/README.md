@@ -4,6 +4,7 @@ Portable AI agent stack for:
 
 - `OpenCode + NVIDIA` as the primary cloud coding workflow
 - `aider + Ollama` as the local fallback workflow
+- `stack swarm` as the first multi-agent orchestration layer
 
 This folder is designed so a future agent can read it and finish setup quickly on another PC.
 
@@ -18,7 +19,7 @@ This folder is designed so a future agent can read it and finish setup quickly o
 ## Fast path on a new machine
 
 1. Copy this folder to the new machine.
-2. Create `.env` from `.env.example`.
+2. Create `.env` from `.env.example` if you plan to use Docker.
 3. Read `docs/00-start-here.md`.
 4. Run the bootstrap script for your OS.
 5. Complete the manual steps in `docs/01-secrets-and-auth.md`.
@@ -75,6 +76,8 @@ under `.state/swarm/runs/<run-id>/`
 
 The current default swarm is cloud-first and uses `max-quality` for final synthesis.
 
+Runtime artifacts under `.state/` are intentionally local and ignored by Git.
+
 ## Profiles
 
 The stack includes four OpenCode profiles:
@@ -106,3 +109,4 @@ Shell:
 - `Ollama` is expected to run on the host at `http://127.0.0.1:11434`.
 - `OpenCode` talks to Ollama through the OpenAI-compatible endpoint `/v1`.
 - If you use `config/powershell/profile-snippet.ps1`, run `scripts/bootstrap.ps1` first so `AGENT_STACK_ROOT` is set.
+- `.env` is for Docker and local compose runs. Host-native PowerShell uses user env vars, and host-native bash/WSL expects exported env vars in your shell session.

@@ -34,3 +34,7 @@ They are not sacred. They are meant to make it easy to switch behavior quickly.
 - drop to `cheap` for rough work
 - switch to `local-only` when cloud is unavailable or unnecessary
 - move to `max-quality` for the hard stuff
+
+## Portability note
+
+- These profile names are the stable interface. Scripts and docs should prefer `fast`, `cheap`, `local-only`, and `max-quality` over hardcoding model IDs unless the exact model matters.

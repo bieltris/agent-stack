@@ -1,7 +1,7 @@
 {
   "default": {
     "label": "Cloud Dev Swarm",
-    "description": "Five-agent cloud-first development swarm with local synthesis fallback.",
+    "description": "Five-agent cloud-first development swarm with cloud synthesis.",
     "synthesisProfile": "max-quality",
     "agents": [
       {

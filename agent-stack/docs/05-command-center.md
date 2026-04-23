@@ -13,6 +13,7 @@ With it, you can operate the stack through one command surface:
 - `stack run cheap`
 - `stack run local-only`
 - `stack run max-quality`
+- `stack swarm "Design a login feature"`
 - `stack aider`
 - `stack doctor`
 - `stack status`
@@ -32,6 +33,6 @@ Implementation:
 ## Suggested future expansion
 
 - model switching
-- agent routing
-- multi-agent orchestration
+- automatic cloud to local fallback
+- smarter agent routing
 - GUI frontend using the same command primitives

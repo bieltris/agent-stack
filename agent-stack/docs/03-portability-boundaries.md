@@ -10,6 +10,7 @@ This stack is designed to make a future setup fast, not to be a full disk image.
 - helper scripts
 - setup docs
 - model/provider choices
+- swarm roles and orchestration defaults
 
 ## Not portable as plain files
 
@@ -18,6 +19,7 @@ This stack is designed to make a future setup fast, not to be a full disk image.
 - live cloud sessions
 - GPU drivers and Docker Desktop internals
 - Ollama model blobs if you choose not to copy them separately
+- runtime artifacts under `.state/`
 
 ## Best strategy on another PC
 
@@ -26,3 +28,4 @@ This stack is designed to make a future setup fast, not to be a full disk image.
 3. Let an agent read `AGENTS.md` and the docs.
 4. Rehydrate secrets manually.
 5. Re-pull local models if needed.
+6. Treat `.state/` as disposable output, not required setup data.

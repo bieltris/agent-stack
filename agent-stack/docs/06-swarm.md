@@ -32,6 +32,12 @@ PowerShell:
 powershell -ExecutionPolicy Bypass -File .\scripts\stack.ps1 swarm "Design a login feature"
 ```
 
+Bash/WSL:
+
+```bash
+./scripts/stack.sh swarm "Design a login feature"
+```
+
 ## Output location
 
 Each run is written to:
@@ -46,6 +52,8 @@ Artifacts:
 - `combined.md`
 - `summary.md`
 - one folder per agent with `prompt.md`, `output.md`, `meta.json`
+
+These artifacts are local runtime output. They are ignored by Git and do not need to be copied to recreate the stack elsewhere.
 
 ## Current limitations
 

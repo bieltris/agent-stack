@@ -2,6 +2,11 @@
 
 These are the pieces that cannot be fully portable inside this folder.
 
+Also note:
+
+- the `.state/` folder contains local runtime output from swarm runs and should not be treated as setup input
+- `.env` stays local and is intentionally ignored by Git
+
 ## Warp
 
 Reason:
@@ -51,3 +56,4 @@ Examples:
 - GitHub Copilot auth
 - Codex local login state
 - browser/device-flow approvals
+- NVIDIA API key if you chose to store it outside project-local files

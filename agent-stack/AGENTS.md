@@ -24,6 +24,7 @@ Key goals:
 Important constraints:
 
 - Do not commit real secrets into this folder.
-- Use `.env` from `.env.example`.
+- Use `.env` from `.env.example` for Docker only.
+- Treat `.state/` as runtime output, not portable source of truth.
 - Keep `Ollama` on the host machine, not inside the container.
 - Treat Warp and other GUI tools as optional host extras.

@@ -41,7 +41,14 @@ opencode models nvidia
 If that does not work, use the stack config explicitly:
 
 ```powershell
-$env:OPENCODE_CONFIG = "D:\path\to\agent-stack\opencode.json"
+$env:OPENCODE_CONFIG = (Resolve-Path .\opencode.json).Path
+opencode models nvidia
+```
+
+Linux/macOS/WSL:
+
+```bash
+export NVIDIA_API_KEY="nvapi-..."
 opencode models nvidia
 ```
 
@@ -49,12 +56,13 @@ opencode models nvidia
 
 Primary:
 
-- `nvidia/glm5`
+- `nvidia/z-ai/glm5`
 
 Alternatives:
 
-- `nvidia/kimi-k2.5`
-- `nvidia/minimax-m2.5`
+- `nvidia/moonshotai/kimi-k2.5`
+- `nvidia/minimaxai/minimax-m2.5`
+- `nvidia/nvidia/nvidia-nemotron-nano-9b-v2`
 
 Local fallback:
 
